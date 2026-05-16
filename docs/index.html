@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanzasAR – Instalación</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f1117;
+      color: #e8eaf0;
+      min-height: 100vh;
+      padding: 40px 16px 80px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .logo {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .header p {
+      margin-top: 8px;
+      color: #8b92a5;
+      font-size: 15px;
+    }
+
+    /* Download buttons */
+    .download-section {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+      cursor: pointer;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-mac {
+      background: #1c1c1e;
+      border: 1px solid #3a3a3c;
+      color: #ffffff;
+    }
+    .btn-win {
+      background: #0078d4;
+      color: #ffffff;
+    }
+    .btn-icon { font-size: 20px; }
+    .btn-text { display: flex; flex-direction: column; align-items: flex-start; }
+    .btn-label { font-size: 11px; font-weight: 400; opacity: 0.75; }
+
+    /* Cards */
+    .card {
+      background: #1a1d27;
+      border: 1px solid #2a2d3a;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .card-icon-mac { background: #2c2c2e; }
+    .card-icon-win { background: #0a3a5c; }
+    .card h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 16px; }
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .step-num-mac { background: #2c3e50; color: #7fb3d3; }
+    .step-num-win { background: #0a3a5c; color: #5bb0f5; }
+    .step-content { flex: 1; }
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaf0;
+      margin-bottom: 3px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: #8b92a5;
+      line-height: 1.5;
+    }
+
+    /* Note box */
+    .note {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: #1f2535;
+      border-left: 3px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: #c9a84c;
+      line-height: 1.5;
+    }
+    .note strong { color: #f59e0b; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 56px;
+      color: #4a5068;
+      font-size: 13px;
+    }
+    .footer a { color: #5b7fa6; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">💰</div>
+      <h1>FinanzasAR</h1>
+      <p>Seguimiento de inversiones personales · Hecho por Nicolás Izbicki</p>
+    </div>
+
+    <div class="download-section">
+      <a class="btn btn-mac" href="https://github.com/nicoizbicki10-dotcom/App-Finanzas-Windows/releases/latest/download/FinanzasAR-mac.dmg" id="btn-mac">
+        <span class="btn-icon">🍎</span>
+        <span class="btn-text">
+          <span class="btn-label">DESCARGAR PARA</span>
+          <span>Mac</span>
+        </span>
+      </a>
+      <a class="btn btn-win" href="https://github.com/nicoizbicki10-dotcom/App-Finanzas-Windows/releases/latest/download/FinanzasAR-windows.zip" id="btn-win">
+        <span class="btn-icon">🪟</span>
+        <span class="btn-text">
+          <span class="btn-label">DESCARGAR PARA</span>
+          <span>Windows</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- Mac instructions -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-mac">🍎</div>
+        <h2>Instalación en Mac</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num step-num-mac">1</div>
+          <div class="step-content">
+            <div class="step-title">Descargá el archivo .dmg</div>
+            <div class="step-desc">Hacé click en el botón "Mac" de arriba. Se descarga un archivo <strong>FinanzasAR-x.x.x-mac.dmg</strong>.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-mac">2</div>
+          <div class="step-content">
+            <div class="step-title">Abrí el DMG</div>
+            <div class="step-desc">Hacé doble click en el archivo descargado. Se abre una ventana con la app y la carpeta Aplicaciones.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-mac">3</div>
+          <div class="step-content">
+            <div class="step-title">Arrastrá FinanzasAR a Aplicaciones</div>
+            <div class="step-desc">Simplemente arrastrá el ícono de FinanzasAR hacia la carpeta "Aplicaciones" dentro de esa misma ventana.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-mac">4</div>
+          <div class="step-content">
+            <div class="step-title">Abrí la app por primera vez</div>
+            <div class="step-desc">Andá a Aplicaciones, buscá FinanzasAR y hacé <strong>click derecho → Abrir</strong>. Confirmá en el aviso que aparece. Solo hay que hacer esto la primera vez.</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>¿Por qué click derecho → Abrir?</strong> Como la app no está en el App Store, macOS pide confirmación la primera vez. Después de esa vez ya abre normal con doble click.
+      </div>
+    </div>
+
+    <!-- Windows instructions -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-win">🪟</div>
+        <h2>Instalación en Windows</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num step-num-win">1</div>
+          <div class="step-content">
+            <div class="step-title">Descargá el archivo .zip</div>
+            <div class="step-desc">Hacé click en el botón "Windows" de arriba. Se descarga un archivo <strong>FinanzasAR-x.x.x-windows.zip</strong>.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-win">2</div>
+          <div class="step-content">
+            <div class="step-title">Descomprimí el ZIP</div>
+            <div class="step-desc">Click derecho sobre el archivo descargado → <strong>Extraer todo</strong>. Elegí una carpeta donde quieras guardar la app (por ejemplo, Documentos).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-win">3</div>
+          <div class="step-content">
+            <div class="step-title">Ejecutá FinanzasAR.exe</div>
+            <div class="step-desc">Dentro de la carpeta extraída, hacé doble click en <strong>FinanzasAR.exe</strong> para abrir la app.</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>¿Windows Defender muestra un aviso?</strong> Hacé click en <strong>"Más información"</strong> y después en <strong>"Ejecutar de todas formas"</strong>. El aviso aparece porque la app no tiene firma digital paga, pero es segura.
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>¿Tenés algún problema? Escribile a <a href="mailto:nicoizbicki@gmail.com">Nico</a>.</p>
+      <p style="margin-top:8px;">
+        <a href="https://github.com/nicoizbicki10-dotcom/App-Finanzas-Windows/releases">Ver todas las versiones</a>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // Fix download links to point to the latest release assets
+    const RELEASES = "https://github.com/nicoizbicki10-dotcom/App-Finanzas-Windows/releases/latest";
+    fetch("https://api.github.com/repos/nicoizbicki10-dotcom/App-Finanzas-Windows/releases/latest")
+      .then(r => r.json())
+      .then(data => {
+        const assets = data.assets || [];
+        const mac = assets.find(a => a.name.endsWith("-mac.dmg"));
+        const win = assets.find(a => a.name.endsWith("-windows.zip"));
+        if (mac) document.getElementById("btn-mac").href = mac.browser_download_url;
+        if (win) document.getElementById("btn-win").href = win.browser_download_url;
+      })
+      .catch(() => {
+        document.getElementById("btn-mac").href = RELEASES;
+        document.getElementById("btn-win").href = RELEASES;
+      });
+  </script>
+</body>
+</html>
