@@ -1,0 +1,114 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'   # Dispara con cualquier tag tipo v1.0.0, v1.2.3, etc.
+
+jobs:
+  # ─── macOS ────────────────────────────────────────────────────────────────
+  build-macos:
+    name: Build macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build macOS release
+        run: flutter build macos --release
+
+      - name: Sign (ad-hoc)
+        run: |
+          codesign --force --deep --sign - \
+            "build/macos/Build/Products/Release/FinanzasAR.app"
+
+      - name: Create DMG
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          TMP=$(mktemp -d)
+          cp -R "build/macos/Build/Products/Release/FinanzasAR.app" "$TMP/"
+          ln -s /Applications "$TMP/Applications"
+          hdiutil create \
+            -volname "FinanzasAR" \
+            -srcfolder "$TMP" \
+            -ov -format UDZO \
+            "FinanzasAR-${VERSION}-mac.dmg"
+          rm -rf "$TMP"
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-dmg
+          path: "FinanzasAR-*-mac.dmg"
+
+  # ─── Windows ──────────────────────────────────────────────────────────────
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build Windows release
+        run: flutter build windows --release
+
+      - name: Package ZIP
+        shell: pwsh
+        run: |
+          $VERSION = "$env:GITHUB_REF_NAME" -replace '^v',''
+          $SRC = "build\windows\x64\runner\Release"
+          Compress-Archive -Path "$SRC\*" -DestinationPath "FinanzasAR-$VERSION-windows.zip"
+
+      - name: Upload ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-zip
+          path: "FinanzasAR-*-windows.zip"
+
+  # ─── GitHub Release ───────────────────────────────────────────────────────
+  create-release:
+    name: Create GitHub Release
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-dmg
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "FinanzasAR ${{ github.ref_name }}"
+          body: |
+            ## Instalación
+
+            **Mac:** descargá el `.dmg`, abrilo y arrastrá FinanzasAR a la carpeta Aplicaciones.
+            > Primera vez: click derecho → Abrir (macOS puede pedir confirmación).
+
+            **Windows:** descargá el `.zip`, descomprimilo y ejecutá `FinanzasAR.exe`.
+            > Si Windows Defender avisa, hacé click en "Más información" → "Ejecutar de todas formas".
+          files: |
+            FinanzasAR-*-mac.dmg
+            FinanzasAR-*-windows.zip
+          draft: false
+          prerelease: false

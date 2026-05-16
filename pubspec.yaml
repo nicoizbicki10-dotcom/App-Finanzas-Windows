@@ -1,0 +1,54 @@
+name: finanzas_ar
+description: App de finanzas personales con datos en tiempo real para iOS, Android, macOS y Windows.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # Network
+  dio: ^5.9.2
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Data Classes (manual implementation - no code gen required at start)
+  uuid: ^4.5.1
+  intl: ^0.19.0
+
+  # Charts
+  fl_chart: ^0.70.2
+
+  # Utils
+  connectivity_plus: ^6.1.3
+  shared_preferences: ^2.3.5
+  local_auth: ^2.3.0
+  url_launcher: ^6.3.1
+  path_provider: ^2.1.5
+  cupertino_icons: ^1.0.8
+  image_picker: ^1.1.2
+  file_picker: ^8.1.2
+  syncfusion_flutter_pdf: ^27.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+  # Fuentes: Inter se carga via google_fonts en tiempo de ejecución (no requiere archivos locales)
