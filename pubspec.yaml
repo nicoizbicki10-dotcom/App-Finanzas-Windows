@@ -48,7 +48,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
 
   # Fuentes: Inter se carga via google_fonts en tiempo de ejecución (no requiere archivos locales)
