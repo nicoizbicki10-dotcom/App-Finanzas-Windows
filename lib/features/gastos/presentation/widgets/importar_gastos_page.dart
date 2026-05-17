@@ -697,6 +697,7 @@ class _ImportarGastosPageState extends ConsumerState<ImportarGastosPage> {
           itemCount: _items.length,
           separatorBuilder: (_, __) => const SizedBox(height: 6),
           itemBuilder: (_, i) => _GastoParsedoTile(
+            key: ObjectKey(_items[i]),
             item: _items[i],
             liquidezList: liquidezList,
             onEliminar: () => _eliminarItem(i),
@@ -808,6 +809,15 @@ class _GastoParsedoTileState extends State<_GastoParsedoTile> {
     super.initState();
     _descCtrl = TextEditingController(text: widget.item.descripcion);
     _montoCtrl = TextEditingController(text: widget.item.monto.toStringAsFixed(2));
+  }
+
+  @override
+  void didUpdateWidget(_GastoParsedoTile old) {
+    super.didUpdateWidget(old);
+    if (old.item != widget.item) {
+      _descCtrl.text = widget.item.descripcion;
+      _montoCtrl.text = widget.item.monto.toStringAsFixed(2);
+    }
   }
 
   @override
