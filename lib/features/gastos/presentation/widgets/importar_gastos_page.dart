@@ -793,7 +793,7 @@ class _GastoParsedoTile extends StatefulWidget {
   final List<Liquidez> liquidezList;
   final VoidCallback onEliminar;
 
-  const _GastoParsedoTile({required this.item, required this.liquidezList, required this.onEliminar});
+  const _GastoParsedoTile({super.key, required this.item, required this.liquidezList, required this.onEliminar});
 
   @override
   State<_GastoParsedoTile> createState() => _GastoParsedoTileState();
